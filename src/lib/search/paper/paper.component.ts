@@ -23,7 +23,7 @@ import {debounceTime, distinctUntilChanged} from "rxjs/operators";
       </div>
       
       <div fxFlex=""
-           *ngIf="papers || papers?.length > 0; else noResults">
+           *ngIf="papers?.length > 1">
         <mat-list>
           <mat-list-item *ngFor="let paper of papers">
             <scr-search-paper-item [paper]="paper"></scr-search-paper-item>
@@ -31,21 +31,15 @@ import {debounceTime, distinctUntilChanged} from "rxjs/operators";
         </mat-list>
       </div>
 
-      <ng-template #noResults>
-        <p>No results found</p>
-      </ng-template>
+      <span class="mat-body-1"
+            *ngIf="papers?.length < 1 && loading == false">
+        No results found
+      </span>
 
     </div>
 
   `,
   styles: [`
-    .header {
-      margin-bottom: 24px;
-    }
-
-    .actions {
-      padding: 24px 0 0 0;
-    }
 
     mat-form-field, input {
       width: 100%;

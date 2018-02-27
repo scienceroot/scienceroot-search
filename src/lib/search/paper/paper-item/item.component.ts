@@ -32,6 +32,8 @@ import {ScrPaper} from "../../../core/paper/paper.model";
       <a fxFlex=""
          *ngFor="let link of paper?.link"
          [href]="link"
+         target="_blank"
+         rel="noopener noreferrer"
          class="mat-subheading-2 scr-primary-text paper-item-link">
         Source
       </a>

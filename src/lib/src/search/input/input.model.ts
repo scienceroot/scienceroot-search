@@ -9,6 +9,6 @@ export class ScrSearchInput {
 }
 
 export enum ScrSearchInputType {
-  SIMPLE: 'simple',
-  ADVANCED: 'advanced'
+  SIMPLE = 'simple',
+  ADVANCED = 'advanced'
 }

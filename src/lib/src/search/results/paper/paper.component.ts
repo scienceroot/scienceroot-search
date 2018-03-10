@@ -6,9 +6,9 @@ import {ScrPaper} from "./paper.model";
   template: `
     <div fxLayout="column">
       <div fxFlex=""
-           *ngIf="papers?.length > 1">
+           *ngIf="papers?.length > 0">
         <ul>
-          <li *ngFor="let paper of papers; index as i">
+          <li *ngFor="let paper of papers; let i = index;">
             <scr-search-paper-item [paper]="paper"></scr-search-paper-item>
             <ng-container *ngIf="i < papers.length">
               <mat-divider></mat-divider>

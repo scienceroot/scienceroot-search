@@ -42,9 +42,6 @@ import {ScrPaper} from "../paper.model";
   `,
   styles: [`
     .paper { padding: 24px 0; }
-    .paper-item-link {
-      margin-right: 8px;
-    }
   `]
 })
 export class ScrSearchPaperItem {

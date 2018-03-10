@@ -37,12 +37,11 @@ export class ScrSearch {
   }
 
   private _updateResult(input: ScrSearchInput) {
-    let req = this._searchService.get(input)
-      .then((result: ScrSearchable[]) => {
-        this._result = new ScrSearchResult(input.filterType, result);
+    let req = this._searchService.get(input).then((result: ScrSearchable[]) => {
+      this._result = new ScrSearchResult(input.filterType, result);
 
-        return this._result;
-      });
+      return this._result;
+    });
 
     this._onResultChange.next(req);
   }

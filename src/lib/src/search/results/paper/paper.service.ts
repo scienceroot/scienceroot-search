@@ -20,6 +20,6 @@ export class ScrSearchPaperService {
 
     return this.http.get(url, {params: params})
       .map( (res: any) => ScrPaper.fromObjectArray(res))
-      .toPromise()
+      .toPromise();
   }
 }

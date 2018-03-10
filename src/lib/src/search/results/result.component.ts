@@ -5,23 +5,33 @@ import {ScrSearchResult} from "./result.model";
 @Component({
   selector: 'scr-search-result',
   template: `
-    <div>
-      <scr-loading [waitFor]="resultReq">
-        <div onFinish>
-          <ng-container *ngIf="!!result">
-            <ng-container [ngSwitch]="result.filterType">
-              <ng-container *ngSwitchCase="'ScrPaper'">
-                <scr-search-result-papers [papers]="result.values">
-                </scr-search-result-papers>
+    <div  class="result"
+          fxLayout="row">
+      <div  fxFlex=""
+            fxFlexAlign="center">
+        <scr-loading [waitFor]="resultReq">
+          <div onFinish>
+            <ng-container *ngIf="!!result">
+              <ng-container [ngSwitch]="result.filterType">
+                <ng-container *ngSwitchCase="'ScrPaper'">
+                  <scr-search-result-papers [papers]="result.values">
+                  </scr-search-result-papers>
+                </ng-container>
+                <ng-container *ngSwitchCase="'ScrUser'">
+                  <scr-search-result-users [users]="result.values">
+                  </scr-search-result-users>
+                </ng-container>
               </ng-container>
             </ng-container>
-          </ng-container>
-        </div>
-      </scr-loading>
+          </div>
+        </scr-loading>
+      </div>
     </div>
   `,
   styles: [`
-  
+    .result {
+      width: 100%;
+    }
   `]
 })
 export class ScrSearchResultComponent implements OnInit {

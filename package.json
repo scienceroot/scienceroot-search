@@ -57,6 +57,7 @@
     "@angular/platform-browser": "5.x.x",
     "@angular/platform-browser-dynamic": "5.x.x",
     "@angular/router": "5.x.x",
+    "@bindoc/loading": "^1.0.2",
     "@scienceroot/design": "1.x.x",
     "@scienceroot/security": "1.x.x",
     "camelcase": "4.1.x",

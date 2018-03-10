@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ScrAuthenticationModule, ScrAuthenticationStoreConfig, ScrSecureHttpClientModule} from "@scienceroot/security";
 import {RouterModule} from "@angular/router";
-import {ScrSearchStoreConfigModel} from "search";
+import {ScrSearchHeaderModule, ScrSearchStoreConfigModel} from "search";
 import {ScrSearchRoutesModule} from "search";
 
 @NgModule({
@@ -19,6 +19,7 @@ import {ScrSearchRoutesModule} from "search";
     ScrAuthenticationModule,
     ScrSecureHttpClientModule,
     ScrSearchRoutesModule,
+    ScrSearchHeaderModule,
     RouterModule.forRoot([
       {path: '', redirectTo: '/search', pathMatch: 'full'}
     ])
@@ -29,8 +30,8 @@ import {ScrSearchRoutesModule} from "search";
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  //private host: string = 'https://api.scienceroots.com';
-  private host: string = 'http://localhost:8080';
+  private host: string = 'https://api.scienceroots.com';
+  //private host: string = 'http://localhost:8080';
 
   constructor() {
     new ScrAuthenticationStoreConfig(

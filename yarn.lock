@@ -83,9 +83,15 @@
   dependencies:
     tslib "^1.7.1"
 
-"@scienceroot/design@^1.0.0-beta.3":
-  version "1.0.0-beta.3"
-  resolved "https://npm.scienceroots.com/@scienceroot%2fdesign/-/design-1.0.0-beta.3.tgz#fd2dde34f3f13b114e0f66c4cb58a4fc48fb8bf5"
+"@bindoc/loading@1.x.x":
+  version "1.0.2"
+  resolved "https://npm.scienceroots.com/@bindoc%2floading/-/loading-1.0.2.tgz#65cacf8981f87ff5ded7d7a46b902c6c459dcd2b"
+
+"@scienceroot/design@1.x.x":
+  version "1.0.4"
+  resolved "https://npm.scienceroots.com/@scienceroot%2fdesign/-/design-1.0.4.tgz#0916300541f33eb370cf6cc02cec74f0496a5db3"
+  dependencies:
+    "@bindoc/loading" "1.x.x"
 
 "@scienceroot/security@1.x.x":
   version "1.0.9"

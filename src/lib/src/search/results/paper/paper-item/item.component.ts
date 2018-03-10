@@ -1,45 +1,47 @@
-import {Component, Input} from "@angular/core";
-import {ScrPaper} from "../../../core/paper/paper.model";
+import {Component, Input, OnInit} from "@angular/core";
+import {ScrPaper} from "../paper.model";
 
 @Component({
   selector: 'scr-search-paper-item',
   template: `
-    
-    <div fxLayout="row">
-      <span fxFlex="">{{paper?.title}}</span>
-      <span  fxFlex=""
-             class="mat-body-1">by</span>
-      <span fxFlex=""
-           fxLayout="row"
-           *ngIf="paper?.author; else missingAuthor">
-        <span fxFlex=""
-              *ngFor="let author_item of paper?.author"
-              class="mat-body-1">
-          {{author_item}}, 
-        </span>
+    <div class="paper">
+      <div>
+        <span class="scr-primary-text mat-title">{{paper.title}}</span>
+      </div>
+      <div>
+        <span class="mat-caption">by</span>
+        <ng-container *ngIf="!!paper && !!paper.author; else missingAuthor">
+          <ng-container *ngFor="let author_item of paper.author; let i = index">
+            <span class="mat-subheading">{{author_item}}</span>
+            <span class="mat-subheading" *ngIf="i + 1 < paper.author.length">, </span>
+          </ng-container>
+        </ng-container>
+        <ng-template #missingAuthor>
+          n/a
+        </ng-template>
+      </div>
+      <div>
+        <span class="mat-caption">Published</span>
+        <span class="mat-subheading">{{paper?.published | date}}</span>
+      </div>        
+        
+
+      <span *ngIf="paper?.summary" class="mat-body-1">
+        {{paper?.summary}}
       </span>
-      <span fxFlex="" class="mat-body-1">{{paper?.published | date}}</span>
-      <ng-template #missingAuthor>
-        unknown
-      </ng-template>
-    </div>
-    
-    <span *ngIf="paper?.summary" class="mat-body-1">
-      {{paper?.summary}}
-    </span>
-    
-    <div fxLayout="row">
-      <a fxFlex=""
-         *ngFor="let link of paper?.link"
-         [href]="link"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="mat-subheading-2 scr-primary-text paper-item-link">
-        Source
-      </a>
+
+      <div  fxLayout="row"
+            fxLayoutGap="24px" >
+        <div fxFlex="55px"
+             *ngFor="let link of paper?.link">
+          <scr-search-paper-item-link [link]="link">
+          </scr-search-paper-item-link>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
+    .paper { padding: 24px 0; }
     .paper-item-link {
       margin-right: 8px;
     }

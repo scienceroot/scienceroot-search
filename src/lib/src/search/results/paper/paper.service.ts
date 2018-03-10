@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ScrPaper} from "./paper.model";
-import {ScrSearchStore} from "../../store/search.store";
 import "rxjs/add/operator/map";
+import {ScrSearchStore} from "../../../store/search.store";
 
 @Injectable()
 export class ScrSearchPaperService {

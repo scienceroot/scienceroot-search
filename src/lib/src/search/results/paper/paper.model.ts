@@ -1,4 +1,8 @@
-export class ScrPaper {
+import {ScrSearchable} from "../../search.model";
+
+export class ScrPaper extends ScrSearchable {
+
+  public static type: string = 'ScrPaper';
 
   static fromObjectArray(objArr: any[] = []) {
     let mapFc = (obj: any) => ScrPaper.fromObj(obj)
@@ -27,6 +31,6 @@ export class ScrPaper {
     public link?: string[],
     public updated?: Date
   ) {
-
+    super();
   }
 }

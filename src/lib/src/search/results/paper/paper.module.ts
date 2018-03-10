@@ -1,12 +1,15 @@
 import {NgModule} from "@angular/core";
-import {ScrSearchPaperComponent} from "./paper.component";
+import {ScrSearchResultPaperComponent} from "./paper.component";
 import {CommonModule} from "@angular/common";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {ScrSearchPaperService} from "../../core/paper/paper.service";
-import {MatFormFieldModule, MatInputModule, MatListModule, MatProgressSpinnerModule} from "@angular/material";
+import {
+  MatDividerModule, MatFormFieldModule, MatInputModule, MatListModule,
+  MatProgressSpinnerModule
+} from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ScrSearchPaperItemModule} from "./paper-item/item.module";
 import {BrowserModule} from "@angular/platform-browser";
+import {ScrSearchPaperService} from "./paper.service";
 
 @NgModule({
   imports: [
@@ -15,6 +18,7 @@ import {BrowserModule} from "@angular/platform-browser";
     CommonModule,
     FormsModule,
     FlexLayoutModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
@@ -22,13 +26,13 @@ import {BrowserModule} from "@angular/platform-browser";
     ScrSearchPaperItemModule
   ],
   declarations: [
-    ScrSearchPaperComponent
+    ScrSearchResultPaperComponent
   ],
   exports: [
-    ScrSearchPaperComponent
+    ScrSearchResultPaperComponent
   ],
   providers: [
     ScrSearchPaperService
   ]
 })
-export class ScrSearchPaperModule {}
+export class ScrSearchResultPaperModule {}

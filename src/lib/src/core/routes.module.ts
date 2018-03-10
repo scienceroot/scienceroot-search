@@ -1,22 +1,21 @@
 import {NgModule} from "@angular/core";
 import {Route, RouterModule} from "@angular/router";
-import {ScrSearchPaperComponent} from "../search/paper/paper.component";
 import {ScrAuthenticationGuard, ScrAuthenticationLoginComponent, ScrAuthenticationModule} from "@scienceroot/security";
-import {ScrSearchPaperModule} from "../search/paper/paper.module";
+import {ScrSearchComponent} from "../search/search.component";
+import {ScrSearchModule} from "../search/search.module";
 
 const SEARCH_ROUTES: Route[] = [
-  { path: 'search',
-    component: ScrSearchPaperComponent,
-    canActivate: [ScrAuthenticationGuard]},
-  { path: 'login',
-    component: ScrAuthenticationLoginComponent
-  },
+  {
+    path: 'search',
+    component: ScrSearchComponent,
+    canActivate: [ScrAuthenticationGuard]
+  }
 ];
 
 @NgModule({
   imports: [
     ScrAuthenticationModule,
-    ScrSearchPaperModule,
+    ScrSearchModule,
     RouterModule.forChild(SEARCH_ROUTES)
   ],
   declarations: [],

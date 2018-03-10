@@ -5,7 +5,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {ScrAuthenticationModule, ScrAuthenticationStoreConfig, ScrSecureHttpClientModule} from "@scienceroot/security";
+import {
+  ScrAuthenticationLoginComponent, ScrAuthenticationModule, ScrAuthenticationStoreConfig,
+  ScrSecureHttpClientModule
+} from "@scienceroot/security";
 import {RouterModule} from "@angular/router";
 import {ScrSearchHeaderModule, ScrSearchStoreConfigModel} from "search";
 import {ScrSearchRoutesModule} from "search";
@@ -21,7 +24,8 @@ import {ScrSearchRoutesModule} from "search";
     ScrSearchRoutesModule,
     ScrSearchHeaderModule,
     RouterModule.forRoot([
-      {path: '', redirectTo: '/search', pathMatch: 'full'}
+      {path: '', redirectTo: '/search', pathMatch: 'full'},
+      {path: 'login', component: ScrAuthenticationLoginComponent}
     ])
   ],
   declarations: [

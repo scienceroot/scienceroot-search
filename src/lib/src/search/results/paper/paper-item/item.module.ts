@@ -2,13 +2,17 @@ import {NgModule} from "@angular/core";
 import {MatCardModule, MatListModule} from "@angular/material";
 import {CommonModule} from "@angular/common";
 import {ScrSearchPaperItem} from "./item.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {ScrSearchPaperItemLinkComponent} from "./link.component";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FlexLayoutModule
   ],
   declarations: [
-    ScrSearchPaperItem
+    ScrSearchPaperItem,
+    ScrSearchPaperItemLinkComponent
   ],
   exports: [
     ScrSearchPaperItem

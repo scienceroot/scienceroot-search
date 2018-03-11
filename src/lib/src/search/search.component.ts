@@ -41,8 +41,7 @@ export class ScrSearchComponent {
   private _onQueryParamsChange(params: ScrSearchQueryParams) {
     let input = new ScrSearchInput(ScrSearchInputType.SIMPLE, params.query);
 
-    this.search = new ScrSearch(this._searchService, null);
-    this.search.input = input;
+    this.search = new ScrSearch(this._searchService, input);
   }
 }
 

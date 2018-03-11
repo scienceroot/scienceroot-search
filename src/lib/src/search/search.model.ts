@@ -3,7 +3,7 @@ import {ScrSearchResult} from "./results/result.model";
 import {ScrSearchService} from "./search.service";
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
-import {debounceTime} from "rxjs/operators";
+import {debounceTime, startWith} from "rxjs/operators";
 
 export class ScrSearch {
 
@@ -22,6 +22,7 @@ export class ScrSearch {
 
     this._onInputChange
       .pipe(
+        startWith(_input),
         debounceTime(250)
       )
       .subscribe(input => this._updateResult(input));

@@ -32,7 +32,7 @@ export class ScrPaper extends ScrSearchable {
     public published?: Date,
     public summary?: string,
     public author?: string[],
-    public links: ScrPaperLink[],
+    public links?: ScrPaperLink[],
     public updated?: Date
   ) {
     super();

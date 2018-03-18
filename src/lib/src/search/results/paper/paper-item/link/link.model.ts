@@ -21,6 +21,8 @@ export class ScrPaperLink {
       this.type = ScrPaperLinkType.DOI;
     } else if(target.indexOf(ScrPaperLinkType.ABSTRACT) > -1) {
       this.type = ScrPaperLinkType.ABSTRACT;
+    } else {
+      this.type = ScrPaperLinkType.WEB;
     }
   }
 }
@@ -28,11 +30,13 @@ export class ScrPaperLink {
 export enum ScrPaperLinkType {
   DOI = 'doi',
   PDF = 'pdf',
-  ABSTRACT = 'abs'
+  ABSTRACT = 'abs',
+  WEB = 'web'
 }
 
 export const SCR_PAPER_LINK_TYPE_DISPLAY_NAMES: any = {
   doi: 'DOI',
   pdf: 'PDF',
-  abs: 'Abstract'
+  abs: 'Abstract',
+  web: 'Web'
 };

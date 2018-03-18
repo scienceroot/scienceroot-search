@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {ScrSearchInput} from "../input.model";
+import {ScrSimpleSearchInputData} from "./simple-input.model";
 
 @Component({
   selector: 'scr-search-input-simple',
@@ -10,7 +11,7 @@ import {ScrSearchInput} from "../input.model";
         <mat-form-field>
           <input  matInput=""
                   placeholder="Search..."
-                  [ngModel]="input.query"
+                  [ngModel]="input.data.q"
                   (ngModelChange)="onQueryChange($event)"
                   type="search">
         </mat-form-field>
@@ -28,7 +29,7 @@ export class ScrSearchInputSimpleComponent {
   @Output() onInputChange: EventEmitter<ScrSearchInput> = new EventEmitter();
 
   public onQueryChange(newQuery: string) {
-    this.input.query = newQuery;
+    this.input.data = new ScrSimpleSearchInputData(newQuery);
 
     this.onInputChange.emit(this.input);
   }

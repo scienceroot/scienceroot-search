@@ -12,11 +12,8 @@ export class ScrSearchPaperService {
   ) {
   }
 
-  public search(query: string): Promise<ScrPaper[]> {
+  public search(params: HttpParams): Promise<ScrPaper[]> {
     let url: string = `${ScrSearchStore.searchPapers()}`;
-
-    let params: HttpParams = new HttpParams();
-    params = params.set('q', query);
 
     return this.http.get(url, {params: params})
       .map( (res: any) => ScrPaper.fromObjectArray(res))

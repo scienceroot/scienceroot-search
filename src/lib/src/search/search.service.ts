@@ -16,7 +16,6 @@ export class ScrSearchService {
   }
 
   public get(input: ScrSearchInput): Promise<ScrSearchable[]> {
-    console.log(input)
     let result;
 
     switch (input.filterType) {
@@ -32,10 +31,10 @@ export class ScrSearchService {
   }
 
   private _getPapers(input: ScrSearchInput): Promise<ScrPaper[]> {
-    return this._paperService.search(input.query);
+    return this._paperService.search(input.data.toHttpParams());
   }
 
   private _getUsers(input: ScrSearchInput): Promise<ScrSearchableUser[]> {
-    return this._userService.search(input.query);
+    return this._userService.search(input.data.toHttpParams());
   }
 }

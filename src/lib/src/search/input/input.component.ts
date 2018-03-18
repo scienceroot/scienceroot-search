@@ -5,8 +5,9 @@ import {ScrSearchInput, ScrSearchInputType} from "./input.model";
   selector: 'scr-search-input',
   template: `
     <div>
-      <ng-container *ngIf="input.type === SIMPLE; then simple">
+      <ng-container *ngIf="input.type === SIMPLE; then simple else advanced">
       </ng-container>
+      
       <div>
         <scr-search-input-filter-type (filterTypeChange)="filterTypeChange($event)">
         </scr-search-input-filter-type>
@@ -18,6 +19,15 @@ import {ScrSearchInput, ScrSearchInputType} from "./input.model";
                                 (onInputChange)="inputChange($event)">
       </scr-search-input-simple>
     </ng-template>
+
+    <ng-template #advanced>
+      <ng-container *ngIf="input.filterType === 'ScrPaper'">
+        
+      </ng-container>
+      <ng-container *ngIf="input.filterType === 'ScrUser'">
+
+      </ng-container>
+    </ng-template>
   `,
   styles: [`
   
@@ -26,6 +36,7 @@ import {ScrSearchInput, ScrSearchInputType} from "./input.model";
 export class ScrSearchInputComponent {
 
   public readonly SIMPLE: ScrSearchInputType = ScrSearchInputType.SIMPLE;
+  public readonly ADVANCED: ScrSearchInputType = ScrSearchInputType.ADVANCED;
 
   @Input() input: ScrSearchInput;
 

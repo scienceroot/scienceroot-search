@@ -11,11 +11,8 @@ export class ScrSearchUserService {
   ) {
   }
 
-  public search(query: string): Promise<ScrSearchableUser[]> {
+  public search(params: HttpParams): Promise<ScrSearchableUser[]> {
     let url: string = `${ScrSearchStore.searchUsers()}`;
-
-    let params: HttpParams = new HttpParams();
-    params = params.set('q', query);
 
     return this.http.get(url, {params: params})
       .map( (res: any) => ScrSearchableUser.fromObjectArray(res))

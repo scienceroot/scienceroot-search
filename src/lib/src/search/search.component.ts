@@ -3,6 +3,7 @@ import {ScrSearch} from "./search.model";
 import {ActivatedRoute} from "@angular/router";
 import {ScrSearchInput, ScrSearchInputType} from "./input/input.model";
 import {ScrSearchService} from "./search.service";
+import {ScrSimpleSearchInputData} from "./input/simple/simple-input.model";
 
 @Component({
   selector: '',
@@ -39,7 +40,7 @@ export class ScrSearchComponent {
   }
 
   private _onQueryParamsChange(params: ScrSearchQueryParams) {
-    let input = new ScrSearchInput(ScrSearchInputType.SIMPLE, params.query);
+    let input = new ScrSearchInput(ScrSearchInputType.SIMPLE, new ScrSimpleSearchInputData(params.query));
 
     this.search = new ScrSearch(this._searchService, input);
   }

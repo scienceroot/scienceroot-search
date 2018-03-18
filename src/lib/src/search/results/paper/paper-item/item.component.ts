@@ -26,6 +26,9 @@ import {ScrPaper} from "../paper.model";
         <div>
           <span class="mat-caption">Published</span>
           <span class="mat-subheading">{{paper?.published | date}}</span>
+          <ng-container *ngIf="paper?.published !== paper?.updated">
+            <span class="mat-subheading">(updated {{paper?.updated | date}})</span>
+          </ng-container>
         </div>
       </div>
       

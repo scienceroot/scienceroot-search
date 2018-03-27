@@ -1,11 +1,21 @@
 import {NgModule} from "@angular/core";
+import {ScrSearchInputAdvancedPaperModule} from "./paper/paper.module";
+import {ScrSearchInputAdvancedComponent} from "./advanced.component";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-  imports: [],
-  declarations: [],
-  exports: [],
+  imports: [
+    CommonModule,
+    ScrSearchInputAdvancedPaperModule
+  ],
+  declarations: [
+    ScrSearchInputAdvancedComponent
+  ],
+  exports: [
+    ScrSearchInputAdvancedComponent
+  ],
   providers: []
 })
-export class Module {
+export class ScrSearchInputAdvancedModule {
 
 }

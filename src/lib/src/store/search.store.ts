@@ -19,4 +19,10 @@ export class ScrSearchStore {
 
     return `${config.users}`;
   }
+
+  public static searchPreprints(): string {
+    let config = ScrSearchStoreConfigModel.fetch();
+
+    return `${config.preprints}`;
+  }
 }

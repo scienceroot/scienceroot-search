@@ -5,6 +5,7 @@ import {CommonModule} from "@angular/common";
 import {ScrLoadingModule} from "@scienceroot/design";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ScrSearchResultUserModule} from "./user/user.module";
+import {ScrSearchResultPreprintModule} from './preprint/preprint.module';
 
 export * from './paper/paper.module';
 
@@ -14,7 +15,8 @@ export * from './paper/paper.module';
     FlexLayoutModule,
     ScrLoadingModule,
     ScrSearchResultPaperModule,
-    ScrSearchResultUserModule
+    ScrSearchResultUserModule,
+    ScrSearchResultPreprintModule
   ],
   declarations: [
     ScrSearchResultComponent

@@ -6,7 +6,7 @@ export class ScrSimpleSearchInputData extends ScrSearchInputData {
   constructor(
     public q: string
   ) {
-
+    super();
   }
 
   public toHttpParams(): HttpParams {

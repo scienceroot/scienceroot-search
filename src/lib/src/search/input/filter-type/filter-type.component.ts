@@ -14,6 +14,11 @@ import {MatRadioChange} from "@angular/material";
           </mat-radio-button>
         </div>
         <div fxFlex="80px">
+          <mat-radio-button value="ScrPreprint">
+            <span>Preprints</span>
+          </mat-radio-button>
+        </div>
+        <div fxFlex="80px">
           <mat-radio-button value="ScrUser">
             <span>User</span>
           </mat-radio-button>
@@ -27,7 +32,7 @@ import {MatRadioChange} from "@angular/material";
 })
 export class ScrSearchInputFilterTypeComponent {
 
-  @Output() filterTypeChange: EventEmitter<'ScrPaper' | 'ScrUser'> = new EventEmitter();
+  @Output() filterTypeChange: EventEmitter<'ScrPaper' | 'ScrUser' | 'ScrPreprint'> = new EventEmitter();
 
   public onFilterTypeChange(filterTypeChangeEvent: MatRadioChange) {
     this.filterTypeChange.emit(filterTypeChangeEvent.value);

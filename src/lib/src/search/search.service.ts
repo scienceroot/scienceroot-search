@@ -5,13 +5,16 @@ import {ScrPaper} from "./results/paper/paper.model";
 import {ScrSearchable} from "./search.model";
 import {ScrSearchUserService} from "./results/user/user.service";
 import {ScrSearchableUser} from "./results/user/user.model";
+import {ScrPreprint} from './results/preprint/preprint.model';
+import {ScrSearchPreprintService} from './results/preprint/preprint.service';
 
 @Injectable()
 export class ScrSearchService {
 
   constructor(
     private _paperService: ScrSearchPaperService,
-    private _userService: ScrSearchUserService
+    private _userService: ScrSearchUserService,
+    private _preprintService: ScrSearchPreprintService
   ) {
   }
 
@@ -22,9 +25,12 @@ export class ScrSearchService {
       case 'ScrPaper':
         result = this._getPapers(input);
         break;
+      case 'ScrPreprint':
+        result = this._getPreprints(input);
+        break;
       case 'ScrUser':
-        console.log('case ScrUser')
         result = this._getUsers(input);
+        break;
     }
 
     return result;
@@ -36,5 +42,9 @@ export class ScrSearchService {
 
   private _getUsers(input: ScrSearchInput): Promise<ScrSearchableUser[]> {
     return this._userService.search(input.data.toHttpParams());
+  }
+
+  private _getPreprints(input: ScrSearchInput): Promise<ScrPreprint[]> {
+    return this._preprintService.search(input.data.toHttpParams());
   }
 }

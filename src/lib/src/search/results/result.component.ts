@@ -17,6 +17,10 @@ import {ScrSearchResult} from "./result.model";
                   <scr-search-result-papers [papers]="result.values">
                   </scr-search-result-papers>
                 </ng-container>
+                <ng-container *ngSwitchCase="'ScrPreprint'">
+                  <scr-search-result-preprints [preprints]="result.values">
+                  </scr-search-result-preprints>
+                </ng-container>
                 <ng-container *ngSwitchCase="'ScrUser'">
                   <scr-search-result-users [users]="result.values">
                   </scr-search-result-users>
@@ -50,7 +54,6 @@ export class ScrSearchResultComponent implements OnInit {
   private _onResultReqChange(newResultReq: Promise<ScrSearchResult>) {
     this.resultReq = newResultReq;
     this.resultReq.then((newResult: ScrSearchResult) => {
-      console.log(newResult)
       this.result = newResult
     });
   }

@@ -4,7 +4,7 @@ export class ScrSearchInput {
 
   constructor(
     public type: ScrSearchInputType = ScrSearchInputType.SIMPLE,
-    public data?: ScrSearchInputData,
+    public data?: any,
     public filterType: 'ScrPaper' | 'ScrUser' | 'ScrPreprint' = 'ScrPaper'
   ) {
   }

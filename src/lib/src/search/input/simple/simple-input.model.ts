@@ -4,7 +4,7 @@ import {HttpParams} from "@angular/common/http";
 export class ScrSimpleSearchInputData extends ScrSearchInputData {
 
   constructor(
-    public q: string
+    public q?: string
   ) {
     super();
   }

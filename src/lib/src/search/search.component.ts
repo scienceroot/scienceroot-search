@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {map} from 'rxjs/operators';
 import {ScrSearchResult} from './results/result.model';
 import {ScrSearch} from "./search.model";
 import {ActivatedRoute} from "@angular/router";
@@ -10,23 +11,26 @@ import {ScrSimpleSearchInputData} from "./input/simple/simple-input.model";
   selector: '',
   template: `
     <div *ngIf="!!search">
-      <div>
+      <div [ngClass]="{
+        'hero': isInitState
+      }">
         <scr-search-input [input]="search.input"
                           (onInputChange)="onSearchInputChange($event)">
         </scr-search-input>
       </div>
-      <div>
+      <div *ngIf="!isInitState">
         <scr-search-result [resultReq]="resultReq">
         </scr-search-result>
       </div>
     </div>
   `,
   styles: [`
-
+    
   `]
 })
 export class ScrSearchComponent {
 
+  public isInitState: boolean = true;
   public search: ScrSearch;
   public resultReq: Promise<ScrSearchResult>;
 
@@ -42,13 +46,28 @@ export class ScrSearchComponent {
   }
 
   private _onQueryParamsChange(params: ScrSearchQueryParams) {
-    const input = new ScrSearchInput(ScrSearchInputType.SIMPLE, new ScrSimpleSearchInputData(params.query));
+    const query: string = params.query;
+    let input =  null;
+
+    if (!!query) {
+      input = new ScrSearchInput(ScrSearchInputType.SIMPLE, new ScrSimpleSearchInputData(params.query));
+    }
     this._updateSearch(input);
   }
 
   private _updateSearch(input: ScrSearchInput) {
     this.search = new ScrSearch(this._searchService, input);
+
     this.search.onResult
+      .pipe(
+        map((res: Promise<ScrSearchResult>) => {
+          if(this.isInitState) {
+            this.isInitState = false;
+          }
+
+          return res;
+        })
+      )
       .subscribe((res: Promise<ScrSearchResult>) => this.resultReq = res);
   }
 }

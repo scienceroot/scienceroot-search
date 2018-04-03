@@ -4,9 +4,10 @@ export class ScrSearchInput {
 
   constructor(
     public type: ScrSearchInputType = ScrSearchInputType.SIMPLE,
-    public data?: any,
+    public data: ScrSearchInputData = new ScrSearchInputData(),
     public filterType: 'ScrPaper' | 'ScrUser' | 'ScrPreprint' = 'ScrPaper'
   ) {
+
   }
 }
 
@@ -15,7 +16,13 @@ export enum ScrSearchInputType {
   ADVANCED = 'advanced'
 }
 
-export abstract class ScrSearchInputData {
+export class ScrSearchInputData {
 
-  public abstract toHttpParams(): HttpParams;
+  public toHttpParams(): HttpParams {
+    let params = new HttpParams();
+
+    params = params.set('q', '');
+
+    return params;
+  };
 }

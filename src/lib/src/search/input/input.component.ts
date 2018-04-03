@@ -1,24 +1,27 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ScrSearchInput, ScrSearchInputType} from "./input.model";
+import {ScrSimpleSearchInputData} from './simple/simple-input.model';
 
 @Component({
   selector: 'scr-search-input',
   template: `
-    <div>
-      <scr-search-input-type  [type]="input.type"
-                              (typeChange)="onTypeChange($event)"> 
-      </scr-search-input-type>
-    </div>
-    
-    <div>
-      <ng-container *ngIf="input.type === SIMPLE; then simple else advanced">
-      </ng-container>
-      
+    <ng-container *ngIf="input">
       <div>
-        <scr-search-input-filter-type (filterTypeChange)="filterTypeChange($event)">
-        </scr-search-input-filter-type>
+        <scr-search-input-type  [type]="input.type "
+                                (typeChange)="onTypeChange($event)">
+        </scr-search-input-type>
       </div>
-    </div>
+
+      <div>
+        <ng-container *ngIf="input.type === SIMPLE; then simple else advanced">
+        </ng-container>
+
+        <div>
+          <scr-search-input-filter-type (filterTypeChange)="filterTypeChange($event)">
+          </scr-search-input-filter-type>
+        </div>
+      </div>
+    </ng-container>
     
     <ng-template #simple>
       <scr-search-input-simple  [input]="input"
@@ -35,13 +38,17 @@ import {ScrSearchInput, ScrSearchInputType} from "./input.model";
   
   `]
 })
-export class ScrSearchInputComponent {
+export class ScrSearchInputComponent implements OnInit {
 
   public readonly SIMPLE: ScrSearchInputType = ScrSearchInputType.SIMPLE;
 
   @Input() input: ScrSearchInput;
 
   @Output() onInputChange: EventEmitter<ScrSearchInput> = new EventEmitter();
+
+  ngOnInit(): void {
+    this.input = this.input || new ScrSearchInput();
+  }
 
   public inputChange(newInput: ScrSearchInput) {
     this._updateInput(newInput)
@@ -54,7 +61,7 @@ export class ScrSearchInputComponent {
     this._updateInput(newFilter);
   }
 
-  public filterTypeChange(newFilterType: 'ScrPaper' | 'ScrUser') {
+  public filterTypeChange(newFilterType: 'ScrPaper' | 'ScrUser' | 'ScrPreprint') {
     let newFilter = this.input;
 
     newFilter.filterType = newFilterType;

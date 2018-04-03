@@ -3,7 +3,7 @@ import {ScrSearchResult} from "./results/result.model";
 import {ScrSearchService} from "./search.service";
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
-import {debounceTime, startWith} from "rxjs/operators";
+import {debounceTime, filter, map} from 'rxjs/operators';
 
 export class ScrSearch {
 
@@ -16,16 +16,25 @@ export class ScrSearch {
 
   constructor(
     private _searchService: ScrSearchService,
-    private _input: ScrSearchInput = new ScrSearchInput()
+    private _input: ScrSearchInput
   ) {
     this.onResult = this._onResultChange.asObservable();
-
+    console.log(_input)
     this._onInputChange
       .pipe(
-        startWith(_input),
+        filter(input => !!input),
+        map(input => {
+          console.log(input)
+          return input;
+        }),
         debounceTime(250)
       )
-      .subscribe(input => this._updateResult(input));
+      .subscribe(input => {
+        console.log(input)
+        this._updateResult(input)
+      });
+
+    this._onInputChange.next(this._input);
   }
 
   public get input(): ScrSearchInput {
@@ -38,11 +47,12 @@ export class ScrSearch {
   }
 
   private _updateResult(input: ScrSearchInput) {
-    let req = this._searchService.get(input).then((result: ScrSearchable[]) => {
-      this._result = new ScrSearchResult(input.filterType, result);
+    const req = this._searchService.get(input)
+      .then((result: ScrSearchable[]) => {
+        this._result = new ScrSearchResult(input.filterType, result);
 
-      return this._result;
-    });
+        return this._result;
+      });
 
     this._onResultChange.next(req);
   }

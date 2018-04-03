@@ -19,7 +19,6 @@ export class ScrSearch {
     private _input: ScrSearchInput
   ) {
     this.onResult = this._onResultChange.asObservable();
-    console.log(_input)
     this._onInputChange
       .pipe(
         filter(input => !!input),

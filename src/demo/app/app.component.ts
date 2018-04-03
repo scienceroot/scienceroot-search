@@ -14,7 +14,7 @@ import {Component} from '@angular/core';
         </scr-search-header>
       </div>
     </div>
-    <div style="padding: 24px">
+    <div style="padding-top: 24px">
       <div fxLayout="row"
            fxLayoutAlign="center">
         <div fxFlex="90%"

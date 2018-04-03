@@ -1,6 +1,6 @@
 {
   "name": "@scienceroot/search",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "",
   "main": "./search.umd.js",
   "module": "./search.es5.js",

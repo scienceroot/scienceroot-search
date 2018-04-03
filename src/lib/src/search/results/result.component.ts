@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnChanges, OnInit, SimpleChange} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ScrSearchResult} from "./result.model";
 
@@ -38,23 +38,23 @@ import {ScrSearchResult} from "./result.model";
     }
   `]
 })
-export class ScrSearchResultComponent implements OnInit {
+export class ScrSearchResultComponent implements OnChanges {
 
-  @Input() onResult: Observable<Promise<ScrSearchResult>>;
+  @Input() resultReq: Promise<ScrSearchResult>;
 
-  public resultReq: Promise<ScrSearchResult>;
   public result: ScrSearchResult;
 
-  ngOnInit(): void {
-    if(!!this.onResult) {
-      this.onResult.subscribe(resultReq => this._onResultReqChange(resultReq));
+  ngOnChanges(changes: any): void {
+    if(!!changes.resultReq) {
+      this._onResultReqChange(changes.resultReq);
     }
   }
 
-  private _onResultReqChange(newResultReq: Promise<ScrSearchResult>) {
-    this.resultReq = newResultReq;
-    this.resultReq.then((newResult: ScrSearchResult) => {
-      this.result = newResult
-    });
+  private _onResultReqChange(change: SimpleChange) {
+    if(!!change.currentValue) {
+      change.currentValue.then((newResult: ScrSearchResult) => {
+        this.result = newResult
+      });
+    }
   }
 }

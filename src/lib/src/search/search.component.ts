@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {ScrSearchResult} from './results/result.model';
 import {ScrSearch} from "./search.model";
 import {ActivatedRoute} from "@angular/router";
 import {ScrSearchInput, ScrSearchInputType} from "./input/input.model";
@@ -15,7 +16,7 @@ import {ScrSimpleSearchInputData} from "./input/simple/simple-input.model";
         </scr-search-input>
       </div>
       <div>
-        <scr-search-result [onResult]="search.onResult">
+        <scr-search-result [resultReq]="resultReq">
         </scr-search-result>
       </div>
     </div>
@@ -27,6 +28,7 @@ import {ScrSimpleSearchInputData} from "./input/simple/simple-input.model";
 export class ScrSearchComponent {
 
   public search: ScrSearch;
+  public resultReq: Promise<ScrSearchResult>;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -40,9 +42,14 @@ export class ScrSearchComponent {
   }
 
   private _onQueryParamsChange(params: ScrSearchQueryParams) {
-    let input = new ScrSearchInput(ScrSearchInputType.SIMPLE, new ScrSimpleSearchInputData(params.query));
+    const input = new ScrSearchInput(ScrSearchInputType.SIMPLE, new ScrSimpleSearchInputData(params.query));
+    this._updateSearch(input);
+  }
 
+  private _updateSearch(input: ScrSearchInput) {
     this.search = new ScrSearch(this._searchService, input);
+    this.search.onResult
+      .subscribe((res: Promise<ScrSearchResult>) => this.resultReq = res);
   }
 }
 

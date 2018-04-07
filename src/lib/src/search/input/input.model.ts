@@ -18,7 +18,7 @@ export enum ScrSearchInputType {
 
 export class ScrSearchInputData {
 
-  public q: string;
+  public q?: string;
 
   public toHttpParams(): HttpParams {
     let params = new HttpParams();

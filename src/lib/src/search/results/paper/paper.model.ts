@@ -13,7 +13,7 @@ export class ScrPaper extends ScrSearchable {
 
   public static fromObj(obj: any): ScrPaper {
     let mapFnc = (linkStr: string) => new ScrPaperLink(linkStr);
-    let links = obj.link.map(mapFnc);
+    let links = !!obj.link ? obj.link.map(mapFnc) : [];
 
     return new ScrPaper(
       obj.id,

@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ScrAuthenticationLoginService} from '@scienceroot/security';
 import {ScrSearchInput, ScrSearchInputType} from "./input.model";
 import {ScrSimpleSearchInputData} from './simple/simple-input.model';
 

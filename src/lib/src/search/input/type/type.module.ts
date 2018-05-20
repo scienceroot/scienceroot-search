@@ -1,4 +1,5 @@
 import {NgModule} from "@angular/core";
+import {ScrAuthenticationModule} from '@scienceroot/security';
 import {ScrSearchInputTypeComponent} from "./type.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSlideToggleModule} from "@angular/material";
@@ -8,7 +9,8 @@ import {CommonModule} from '@angular/common';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    ScrAuthenticationModule
   ],
   declarations: [
     ScrSearchInputTypeComponent

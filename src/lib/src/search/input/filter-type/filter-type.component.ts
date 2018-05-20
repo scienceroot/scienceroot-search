@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 import {MatRadioChange} from "@angular/material";
+import {ScrAuthenticationLoginService} from '@scienceroot/security';
 
 @Component({
   selector: 'scr-search-input-filter-type',
@@ -18,11 +19,13 @@ import {MatRadioChange} from "@angular/material";
             <span>Preprints</span>
           </mat-radio-button>
         </div>
-        <div fxFlex="80px">
-          <mat-radio-button value="ScrUser">
-            <span>User</span>
-          </mat-radio-button>
-        </div>
+        <ng-container *ngIf="loggedIn">
+          <div fxFlex="80px">
+            <mat-radio-button value="ScrUser">
+              <span>User</span>
+            </mat-radio-button>
+          </div>
+        </ng-container>
       </div>
     </mat-radio-group>
   `,
@@ -33,6 +36,12 @@ import {MatRadioChange} from "@angular/material";
 export class ScrSearchInputFilterTypeComponent {
 
   @Output() filterTypeChange: EventEmitter<'ScrPaper' | 'ScrUser' | 'ScrPreprint'> = new EventEmitter();
+
+  public readonly loggedIn: boolean = false;
+
+  constructor(private _loginService: ScrAuthenticationLoginService) {
+    this.loggedIn = this._loginService.authenticated();
+  }
 
   public onFilterTypeChange(filterTypeChangeEvent: MatRadioChange) {
     this.filterTypeChange.emit(filterTypeChangeEvent.value);

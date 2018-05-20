@@ -7,8 +7,7 @@ import {ScrSearchModule} from "../search/search.module";
 const SEARCH_ROUTES: Route[] = [
   {
     path: 'search',
-    component: ScrSearchComponent,
-    canActivate: [ScrAuthenticationGuard]
+    component: ScrSearchComponent
   }
 ];
 
